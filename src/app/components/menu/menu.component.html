@@ -1,0 +1,5 @@
+<span>
+    <span *ngFor="let link of linksMenu">
+        <a class="mr-4" routerLinkActive="{{link.active}}" routerLink="{{link.path}}">{{link.label}}</a>
+    </span>
+</span>

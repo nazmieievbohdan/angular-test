@@ -1,0 +1,45 @@
+<form InvalidFocus [formGroup]="createProductForm" (ngSubmit)="onSubmit()">
+    <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="Product name" formControlName="title" appFocus>
+    <div *ngIf="createProductForm.controls.title.invalid && (createProductForm.controls.title.dirty || createProductForm.controls.title.touched)"
+        class="text-red-600 font-medium mb-2">
+        <div *ngIf="createProductForm.controls.title.errors?.['required']">
+            The field is required.
+        </div>
+        <div *ngIf="createProductForm.controls.title.errors?.['minlength']">
+            The field must be at least 6 characters long.
+        </div>
+    </div>
+
+    <input type="number" class="border w-full py-2 px-4 mb-2" placeholder="Price" formControlName="price">
+    <div *ngIf="price.invalid && (price.dirty || price.touched)" class="text-red-600 font-medium mb-2">
+        <div *ngIf="price.errors?.['required']">
+            The field is required.
+        </div>
+        <div *ngIf="price.errors?.['min']">
+            Min value 0
+        </div>
+    </div>
+
+    <textarea class="border w-full py-2 px-4 mb-2" placeholder="Description" formControlName="description"></textarea>
+    <div *ngIf="description.invalid && (description.dirty || description.touched)"
+        class="text-red-600 font-medium mb-2">
+        <div *ngIf="description.errors?.['required']">
+            The field is required.
+        </div>
+        <div *ngIf="description.errors?.['minlength']">
+            The field must be at least 100 characters long.
+        </div>
+    </div>
+
+    <input type="text" class="border w-full py-2 px-4 mb-2" placeholder="Category" formControlName="category">
+    <div *ngIf="category.invalid && (category.dirty || category.touched)" class="text-red-600 font-medium mb-2">
+        <div *ngIf="category.errors?.['required']">
+            The field is required.
+        </div>
+        <div *ngIf="category.errors?.['minlength']">
+            The field must be at least 3 characters long.
+        </div>
+    </div>
+
+    <button class="py-2 px-4 bg-blue-600 text-white" type="submit">{{buttonText}}</button>
+</form>

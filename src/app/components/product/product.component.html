@@ -1,0 +1,37 @@
+<div class="h-full py-4 px-6 border rounded flex item-center flex-col mb-2 relative">
+    <div class="inline-flex rounded-md w-full justify-end" role="group">
+        <button type="button"
+            class="px-4 py-2 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-l-lg hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+            (click)="edit(product)">
+            {{loading.edit?'loading':'Edit'}}
+        </button>
+        <button type="button"
+            class="px-4 py-2 text-sm font-medium text-gray-900 bg-rose-500 border border-rose-500 rounded-r-md hover:bg-rose-800 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-gray-900 dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-gray-900"
+            (click)="delete(product)">
+            {{loading.delete?'loading':'Delete'}}
+        </button>
+    </div>
+    <div class="h-48 flex justify-center ">
+        <img [src]="product.image" [alt]="product.title" class="w-auto mb-2 h-full">
+    </div>
+    <h2 class="mt-4 text-md text-center h-14">{{product.title}}</h2>
+    <p class="h-10">
+        Price: <span class="text-bold">{{ product.price | currency:'UAH' }}</span>
+    </p>
+
+    <button class="border py-2 px-4 rounded " [ngClass]="{
+        'bg-yellow-400': !details,
+        'bg-blue-400': details
+    }" (click)="details = !details">
+        {{ details? 'Hide': 'Show'}} more info
+    </button>
+
+    <div *ngIf="details">
+        <p>
+            {{ product.description }}
+        </p>
+        <ng-container *ngIf="product.rating">
+            Rate: <span class="text-bold">{{ product.rating?.rate | number:'2.2-4' }}</span>
+        </ng-container>
+    </div>
+</div>

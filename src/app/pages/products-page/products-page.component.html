@@ -1,0 +1,30 @@
+<h1 class="font-bold mb-2 text-center">{{ title | titlecase }}</h1>
+
+<ng-container *ngIf="loading; else dataLoaded">
+    <div class="text-center text-lg">
+        loading...
+    </div>
+</ng-container>
+
+<ng-template #dataLoaded>
+    <app-search (nameChange)="handler($event)" [name]="emittedSearchValue"></app-search>
+
+    <ng-container *ngIf="productService.products.length">
+        <div class="w-full inline-grid grid-cols-3 gap-4 place-items-stretch">
+            <div #foundItems
+                *ngFor="let product of productService.products | filterProducts:emittedSearchValue:filterMetadata; let i = index">
+                <app-product [product]="product"></app-product>
+            </div>
+            <div *ngIf="!filterMetadata.count">There is not found products</div>
+        </div>
+    </ng-container>
+
+</ng-template>
+
+<app-modal *ngIf="modalService.isVisible$ | async" title="Create new product">
+    <app-create-product></app-create-product>
+</app-modal>
+
+
+<button class="rounded-full bg-green-700 text-white fixed right-5 bottom-5 py-2 px-4"
+    (click)="modalService.open()">+</button>
