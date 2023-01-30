@@ -6,7 +6,12 @@
             {{loading.edit?'loading':'Edit'}}
         </button>
         <button type="button"
-            class="px-4 py-2 text-sm font-medium text-gray-900 bg-rose-500 border border-rose-500 rounded-r-md hover:bg-rose-800 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-gray-900 dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-gray-900"
+            class="px-4 py-2 text-sm font-medium text-gray-900 bg-green-100 border-t border-b border-green-100 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-white"
+            (click)="toCart(product)">
+            {{loading.buy?'loading':'Buy'}}
+        </button>
+        <button type="button"
+            class="px-4 py-2 text-sm font-medium text-gray-900 bg-rose-100 border border-rose-100 rounded-r-md hover:bg-rose-800 hover:text-blue-700 focus:z-10 focus:ring-2 focus:ring-blue-700 focus:text-blue-700 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:hover:text-gray-900 dark:hover:bg-gray-600 dark:focus:ring-blue-500 dark:focus:text-gray-900"
             (click)="delete(product)">
             {{loading.delete?'loading':'Delete'}}
         </button>

@@ -60,7 +60,7 @@ export class CreateProductComponent {
       description: this.createProductForm.value.description as string,
       image: 'https://i.pravatar.cc',
       category: this.createProductForm.value.category as string,
-      id: this.createProductForm.value.id as string
+      id: this.createProductForm.value.id as number
     }
 
     if (objProduct.id) {

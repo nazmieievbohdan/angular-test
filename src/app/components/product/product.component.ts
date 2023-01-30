@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { IProduct } from '../../interfaces/product';
+import { CartService } from '../../services/cart.service';
 import { ModalService } from '../../services/modal.service';
 import { ProductService } from '../../services/product.service';
 
@@ -12,15 +13,19 @@ export class ProductComponent implements OnDestroy {
   @Input() product: IProduct
   private subscriptionDelete: Subscription
   private subscriptionEdit: Subscription
+  private subscriptionBuy: Subscription
+
   loading = {
     delete: false,
-    edit: false
+    edit: false,
+    buy: false
   }
   details = false
 
   constructor(
     private productService: ProductService,
-    public modalService: ModalService
+    public modalService: ModalService,
+    private cartService:CartService
   ) { }
 
   delete(product: IProduct) {
@@ -43,8 +48,17 @@ export class ProductComponent implements OnDestroy {
     )
   }
 
+  toCart(product: IProduct) {
+      this.loading.buy = true
+      this.subscriptionBuy = this.cartService.addToCart(product, 1)
+      .subscribe(
+        () => this.loading.buy = false
+      )
+  }
+
   ngOnDestroy(): void {
     this.subscriptionDelete?.unsubscribe() //not great way to unsubscribe
     this.subscriptionEdit?.unsubscribe()
+    this.subscriptionBuy?.unsubscribe()
   }
 }

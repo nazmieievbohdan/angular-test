@@ -17,6 +17,7 @@ import { ErrorFocusDirective } from './directives/error-focus.directive';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SearchComponent } from './components/search/search.component';
+import { CartComponent } from './components/cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { SearchComponent } from './components/search/search.component';
     ErrorFocusDirective,
     NotFoundComponent,
     MenuComponent,
-    SearchComponent
+    SearchComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,

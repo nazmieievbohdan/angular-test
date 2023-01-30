@@ -8,10 +8,9 @@ import { ErrorService } from './error.service';
   providedIn: 'root'
 })
 export class ProductService {
-  apiPath = 'https://fakestoreapi.com/products';
+  apiPathProducts = 'https://fakestoreapi.com/products';
 
   products: IProduct[] = []
-  // selectedProduct: IProduct
   selectedProduct$ = new ReplaySubject<IProduct | null>(1)
   unsubscribe$ = new Subject<void>()
 
@@ -23,12 +22,12 @@ export class ProductService {
   getProducts(): Observable<IProduct[]> {
     /** https://fakestoreapi.com/docs  */
 
-    return this._http.get<IProduct[]>(this.apiPath,
+    return this._http.get<IProduct[]>(this.apiPathProducts,
       {
         params: new HttpParams(
           {
             fromObject: {
-              limit: 0
+              limit: 20
             }
           }
         )
@@ -43,20 +42,16 @@ export class ProductService {
   }
 
   create(product: IProduct): Observable<IProduct> {
-    return this._http.post<IProduct>(this.apiPath, product).pipe(
+    return this._http.post<IProduct>(this.apiPathProducts, product).pipe(
       take(1),//2 way to unsubscribe
       tap(
-        (_product: IProduct) => {
-          //console.log('_product', _product)
-          this.products.unshift(_product)
-          //console.log('products', this.products)
-        }
+        (_product: IProduct) => this.products.unshift(_product)
       ),
       catchError(this.ErrorHandler.bind(this))
     )
   }
   update(product: IProduct): Observable<IProduct> {
-    return this._http.put<IProduct>(this.apiPath + '/' + product.id, product).pipe(
+    return this._http.put<IProduct>(this.apiPathProducts + '/' + product.id, product).pipe(
       take(1),//2 way to unsubscribe
       tap(
         (_product: IProduct) => {
@@ -77,7 +72,7 @@ export class ProductService {
   }
 
   delete(product: IProduct): Observable<IProduct> {
-    return this._http.delete<IProduct>(this.apiPath + '/' + product.id).pipe(
+    return this._http.delete<IProduct>(this.apiPathProducts + '/' + product.id).pipe(
       tap(
         () => this.products = this.products.filter(element => element.id != product.id)
       ),
