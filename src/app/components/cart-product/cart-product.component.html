@@ -1,0 +1,18 @@
+<div class="table-cell w-28">
+    <img class="w-12 my-3 " [src]="product.image" [alt]="product.title">
+</div>
+<div class="table-cell w-auto text-left align-middle">
+    {{product.title}}
+</div>
+<div class="table-cell text-center w-1/12 align-middle">
+    <span class="text-bold">{{ product.price | currency:' UAH ' }}</span>
+</div>
+<div class="table-cell text-center w-1/12 align-middle">
+    <span class="text-bold">{{ product.quantity }}</span>
+</div>
+<div class="table-cell text-center w-1/12 align-middle">
+    <button type="button" class="px-4 py-2 text-sm text-gray-900 bg-rose-100 border border-rose-100 hover:bg-rose-200"
+        (click)="delete(product)">
+        {{loading.delete?'loading':'Delete'}}
+    </button>
+</div>

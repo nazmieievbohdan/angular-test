@@ -18,6 +18,9 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { SearchComponent } from './components/search/search.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CartPageComponent } from './pages/cart-page/cart-page.component';
+import { FindProductsPipe } from './pipes/find-products.pipe';
+import { CartProductComponent } from './components/cart-product/cart-product.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +28,7 @@ import { CartComponent } from './components/cart/cart.component';
     ProductComponent,
     GlobalErrorComponent,
     FilterProductsPipe,
+    FindProductsPipe,
     ModalComponent,
     CreateProductComponent,
     FocusDirective,
@@ -34,7 +38,9 @@ import { CartComponent } from './components/cart/cart.component';
     NotFoundComponent,
     MenuComponent,
     SearchComponent,
-    CartComponent
+    CartComponent,
+    CartPageComponent,
+    CartProductComponent
   ],
   imports: [
     BrowserModule,

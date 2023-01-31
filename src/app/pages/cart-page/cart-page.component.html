@@ -1,0 +1,25 @@
+<h1 class="font-bold mb-2 text-center">{{ title | titlecase }}</h1>
+<ng-container *ngIf="cartService.currentCart !== undefined">
+    <ng-container *ngIf="cartService.currentCart.products.length">
+        <div class="table w-full">
+            <div class="table-header-group">
+                <div class="table-row">
+                    <div class="table-cell w-28"></div>
+                    <div class="table-cell text-left w-1/auto">Title</div>
+                    <div class="table-cell text-center w-1/12">Price</div>
+                    <div class="table-cell text-center w-1/12">Quantity</div>
+                    <div class="table-cell text-center w-1/12">Action</div>
+                </div>
+            </div>
+            <div class="table-row-group">
+                <ng-container 
+                    *ngFor="let product of cartService.currentCart.products | findProducts:productService.products:cartMetadata">
+                    <app-cart-product class="table-row mb-8 pb-8" [product]="product"></app-cart-product>
+                </ng-container>
+            </div>
+        </div>
+        <hr>
+        <div *ngIf="cartMetadata.count">Total price {{cartMetadata.price | number:'2.2' | currency:' UAH '}}</div>
+    </ng-container>
+    <div *ngIf="!cartMetadata.count">There is not found products</div>
+</ng-container>
