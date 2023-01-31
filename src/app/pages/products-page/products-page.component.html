@@ -12,7 +12,7 @@
     </div>
 
     <ng-container *ngIf="productService.products.length">
-        <div class="w-full inline-grid place-items-stretch md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-4 px-4 mb-4">
+        <div class="w-full inline-grid place-items-stretch gap-4 px-4 mb-4 md:grid-cols-2 lg:grid-cols-3">
             <div #foundItems
                 *ngFor="let product of productService.products | filterProducts:emittedSearchValue:filterMetadata; let i = index">
                 <app-product [product]="product"></app-product>
