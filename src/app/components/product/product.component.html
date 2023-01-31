@@ -19,7 +19,9 @@
     <div class="h-48 flex justify-center ">
         <img [src]="product.image" [alt]="product.title" class="w-auto mb-2 h-full">
     </div>
-    <h2 class="mt-4 text-md text-center h-14">{{product.title}}</h2>
+    <div class="lg:h-[60px] lg:overflow-y-hidden mt-4">
+        <h2 class="text-md text-center ">{{product.title}}</h2>
+    </div>
     <p class="h-10">
         Price: <span class="text-bold">{{ product.price | currency:'UAH' }}</span>
     </p>
